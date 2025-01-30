@@ -1,22 +1,24 @@
-# Use the Python 3.8-slim image
+# Use an official Python runtime as a parent image
 FROM python:3.8-slim
 
-# Install pip (in case it's missing) and other dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    && curl https://bootstrap.pypa.io/get-pip.py | python3
-
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the application code into the container
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install the dependencies defined in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Flask and Werkzeug with compatible versions
+RUN pip install --upgrade pip
+RUN pip install flask==2.0.3 werkzeug==2.0.3
 
-# Expose port 5000 to access the app
+# Install any other dependencies you need (if applicable)
+# RUN pip install -r requirements.txt
+
+# Make port 5000 available to the world outside this container
 EXPOSE 5000
 
-# Set the default command to run the Flask app
+# Define the environment variable to ensure the app runs in production mode
+ENV FLASK_ENV=production
+
+# Run the app.py file when the container starts
 CMD ["python", "app.py"]
