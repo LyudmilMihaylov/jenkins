@@ -7,12 +7,21 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install Flask and Werkzeug with compatible versions
+# Upgrade pip to avoid any known bugs
 RUN pip install --upgrade pip
+
+# Create and activate a virtual environment
+RUN python -m venv /env
+ENV PATH="/env/bin:$PATH"
+
+# Install Flask, Werkzeug and any additional packages
 RUN pip install flask==2.0.3 werkzeug==2.0.3
 
-# Install any other dependencies you need (if applicable)
+# Install dependencies from requirements.txt, if it exists
 # RUN pip install -r requirements.txt
+
+# Install requests package (for testing)
+RUN pip install requests
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
