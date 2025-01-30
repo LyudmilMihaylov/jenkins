@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Set YOUR_NAME environment variable
-ENV YOUR_NAME="Your_Name_Here"
+ENV YOUR_NAME="Lyudmil Mihaylov"
 
 # Expose the correct port (assuming your app runs on port 5000)
 EXPOSE 5000
