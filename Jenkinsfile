@@ -19,7 +19,7 @@ pipeline {
                 sh 'docker build -t flask-app .'
 
                 // Build the Nginx Docker image from the Nginx-specific Dockerfile
-                sh 'docker build -t mynginx -f Dockerfile.nginx .'
+                sh 'docker build -t mynginx -f nginx.conf .'
             }
         }
 
