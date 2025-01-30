@@ -1,5 +1,5 @@
-# Use the Python 3.6-slim image
-FROM python:3.6-slim
+# Use the Python 3.8-slim image
+FROM python:3.8-slim
 
 # Install pip (in case it's missing) and other dependencies
 RUN apt-get update && apt-get install -y \
