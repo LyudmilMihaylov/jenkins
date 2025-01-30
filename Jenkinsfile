@@ -1,33 +1,20 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Build') {
+        stage('Pipeline Stages') {
             steps {
-                script {
-                    echo 'Building the project...'
-                    sh 'ls'  // List files to show what is present in the workspace
-                }
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                script {
-                    echo 'Running tests...'
-                    sh 'pwd'  // Print the working directory
-                }
+                echo "Running 'deploy.sh' script for listing files..."
+                sh './deploy.sh'  // This will replace sh "ls" with the .sh file
             }
         }
 
-        stage('Deploy') {
+        stage('Second Stage') {
             steps {
-                script {
-                    echo 'Deploying the project...'
-                    sh 'touch deploy.txt'  // Create a file to simulate a deployment
-                    sh 'mv deploy.txt /tmp/deploy.txt'  // Simulate deployment by moving the file
-                }
+                echo "Running 'deploy.sh' script for printing the working directory..."
+                sh './deploy.sh'  // This will replace sh "pwd" with the .sh file
             }
         }
     }
 }
+
