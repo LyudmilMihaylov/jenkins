@@ -4,7 +4,14 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/LyudmilMihaylov/jenkins.git'
+                git branch: 'main', url: 'https://github.com/LyudmilMihaylov/jenkins.git'
+            }
+        }
+
+        stage('Cleanup Previous Containers') {
+            steps {
+                sh 'docker stop my_running_app || true'
+                sh 'docker rm my_running_app || true'
             }
         }
 
@@ -27,3 +34,4 @@ pipeline {
         }
     }
 }
+
