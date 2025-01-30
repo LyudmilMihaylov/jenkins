@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y python3-venv
 
 # Create a virtual environment and install dependencies
 RUN python3 -m venv /env
-RUN /env/bin/pip install flask==2.0.3 requests==2.32.3
+RUN /env/bin/pip install flask==2.0.3 requests==2.0.3
 
 # Set the working directory
 WORKDIR /app
